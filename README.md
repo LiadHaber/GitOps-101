@@ -15,7 +15,7 @@
 ## Hands on
 Clone this repo to your local machine: 
 ```
-git clone https://github.com/LiadHaber/tikal-ops.git && cd tikal-ops
+git clone https://github.com/LiadHaber/GitOps-101.git && cd GitOps-101
 ```
 Create argocd namesapce
 ```
@@ -55,6 +55,7 @@ You can try for yourself with -
 kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/master/bundle.yaml
 ```
 1 workaround for this issue is installing the prometheus operator in 2 phases - 1 app will install the prometheus-operator CRD's and 1 app will install the prometheus resources
+
 Create the prometheus app of apps
 ```
 kubectl apply -f app-of-apps.yaml
@@ -66,14 +67,9 @@ For the purposes of this demo I disabled the node-exporter resource(Disables the
 In addition - We want prometheus to be able to scrape ArgoCD metricsd so I added an additional service-monitor ArgoCD.
 Both of this were supplied as values for the prometheus-stack app. 
 
-Let's add a grafana dashboard for ArgoCD metrics
-```
-kubectl apply -f argocd-grafana-dashboard.yaml
-```
-
 Port-forward grafana service to access it
 ```
-k port-forward service/prometheus-stack-grafana -n monitoring 8081:80
+kubectl port-forward service/prometheus-stack-grafana -n monitoring 8081:80
 ```
 You can go to Dashboards -> ArgoCD to view the dashboard. 
 
