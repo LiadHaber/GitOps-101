@@ -1,10 +1,10 @@
 # K8s GitOps And Monitoring
 
 ## Prerequisites
- - Laptop/PC with 16GB+ of ram
- - K8S cluster, Im using docker-desktop single node cluster for this tutorial.(Kind is also a good and easy option - https://kind.sigs.k8s.io/docs/user/quick-start/)
- - Kubectl cli
- - Helm cli
+ - Laptop/PC with 8GB+ of ram
+ - K8S cluster, Im using docker-desktop for this tutorial(Kind is also a good and easy option - https://kind.sigs.k8s.io/docs/user/quick-start/)
+ - kubectl cli
+ - helm cli
 ## Features
  - Installing ArgoCD using helm
  - Adding our git repository to ArgoCD(We did say GitOps :) )
@@ -64,7 +64,7 @@ kubectl apply -f app-of-apps.yaml
 This will create an app of apps consisting of alll resources managed by the prometheus operator - Such as grafana,prometheus, alertmanager etc.
 
 For the purposes of this demo I disabled the node-exporter resource(Disables the node-exporter daemonset creation).
-In addition - We want prometheus to be able to scrape ArgoCD metricsd so I added an additional service-monitor ArgoCD.
+In addition - We want prometheus to be able to scrape ArgoCD metrics so I added an additional service-monitor for ArgoCD.
 Both of this were supplied as values for the prometheus-stack app. 
 
 Get grafana username and password
