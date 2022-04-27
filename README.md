@@ -67,6 +67,11 @@ For the purposes of this demo I disabled the node-exporter resource(Disables the
 In addition - We want prometheus to be able to scrape ArgoCD metricsd so I added an additional service-monitor ArgoCD.
 Both of this were supplied as values for the prometheus-stack app. 
 
+Get grafana username and password
+```
+echo "Username: $(kubectl get secrets  -n monitoring prometheus-stack-grafana -o jsonpath="{.data.admin-user}" | base64 -d)"
+echo "Password: $(kubectl get secrets  -n monitoring prometheus-stack-grafana -o jsonpath="{.data.admin-password}" | base64 -d)"
+```
 Port-forward grafana service to access it
 ```
 kubectl port-forward service/prometheus-stack-grafana -n monitoring 8081:80
